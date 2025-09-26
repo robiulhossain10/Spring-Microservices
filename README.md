@@ -4,8 +4,11 @@
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.6-brightgreen)
 ![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025-green)
 ![Netflix Eureka](https://img.shields.io/badge/Service%20Discovery-Eureka-orange)
-![Gateway](https://img.shields.io/badge/API%20Gateway-Spring%20Cloud-yellow)
+![API Gateway](https://img.shields.io/badge/API%20Gateway-Spring%20Cloud-yellow)
+![Config Server](https://img.shields.io/badge/Config%20Server-Spring%20Cloud-blueviolet)
+![H2 Database](https://img.shields.io/badge/Database-H2-lightgrey)
 ![License](https://img.shields.io/badge/License-MIT-red)
+
 
 ---
 
@@ -14,23 +17,31 @@
 This is a **Spring Boot Microservices project** built using **Spring Cloud**.  
 It demonstrates how multiple microservices can communicate with each other via **Eureka Discovery Server** and **Spring Cloud Gateway**.
 
-The project contains:
-- ✅ **Eureka Discovery Server** for service registry
-- ✅ **API Gateway** for routing and load balancing
-- ✅ **User Service** (CRUD operations for users)
-- ✅ **Order Service** (CRUD operations for orders)
-- ✅ **H2 Database** for persistence
+## 🗂️ The Project Contains
+
+- ✅ **Eureka Discovery Server** – registers and discovers all microservices
+- ✅ **API Gateway** – handles centralized routing and load balancing
+- ✅ **User Service** – performs CRUD operations for user data
+- ✅ **Order Service** – performs CRUD operations for order data
+- ✅ **H2 Database** – in-memory database for persistence during development
+- ✅ **Spring Cloud Config** – centralized configuration management for all services
+- ✅ **Spring Boot Actuator** – monitoring and health endpoints for services
+
 
 ---
 
 ## ✨ Features
 
-- 🔍 **Service Discovery** (Eureka Server)
-- 🔄 **Load Balancing** via Gateway
-- 🔑 **Centralized Routing** through API Gateway
-- 📊 **Database Integration** with JPA + H2
-- 🛠️ **Easy to scale** — plug in new services quickly
+- 🔍 **Service Discovery** via **Eureka Server**
+- 🔄 **Load Balancing** through Gateway
+- 🔑 **Centralized Routing** via API Gateway
+- 📊 **Database Integration** with **JPA + H2**
+- 🛠️ **Easy to scale** — quickly plug in new microservices
 - ⚡ **Fast development** with hot reload
+- 💾 **Centralized Configuration** with Spring Cloud Config
+- 📈 **Health Monitoring** using Spring Boot Actuator
+- 🧩 **Microservice Architecture** for modular development
+
 
 
 ---
@@ -40,6 +51,10 @@ The project contains:
 - ✅ Java 17
 
 - ✅ Spring Boot 3.5.6
+
+- ✅ Spring Cloud Config
+
+- ✅ REST API
 
 - ✅ Cloud Netflix Eureka
 
@@ -54,27 +69,45 @@ The project contains:
 
 ```bash
 spring-microservices/
-│── discovery-server   # Eureka Server (Service Registry)
-│── api-gateway        # API Gateway (Routing + Load Balancing)
-│── user-service       # User Management Microservice
-│── order-service      # Order Management Microservice
-│── pom.xml            # Parent POM
+│── discovery-server # 🔹 Eureka Server (Service Registry)
+│── api-gateway # 🔹 API Gateway (Routing + Load Balancing)
+│── user-service # 🔹 User Management Microservice (CRUD + H2 DB)
+│── order-service # 🔹 Order Management Microservice (CRUD + H2 DB)
+│── config-server # 🔹 Spring Cloud Config Server (Centralized Config)
+│── config-repo # 🔹 Local/Remote repository for YAML configurations
+│── pom.xml # 🔹 Parent POM for dependency management
 
 ## 🏗️ Architecture
 
-
-                        +------------------+
-                        |  Discovery       |
-                        |  Server (8761)   |
-                        +------------------+
-                                 |
-    +------------------+         |        +------------------+
-    |  User Service    | <------ | -----> |  Order Service   |
-    |  (8081)          |                  |  (8082)          |
-    +------------------+                  +------------------+
-                                 |
-                        +------------------+
-                        |  API Gateway     |
-                        |  (8080)          |
-                        +------------------+
+                           +------------------+
+                           |  Discovery       |
+                           |  Server (8761)   |
+                           +------------------+
+                                     |
+             +-----------+-----------+-----------+
+             |           |                       |
+     +------------------+               +------------------+
+     |  User Service    |               |  Order Service   |
+     |  (8081)          |               |  (8082)          |
+     +------------------+               +------------------+
+             |
+     +------------------+
+     | Product Service  |
+     |  (8083)          |
+     +------------------+
+                                     |
+                           +------------------+
+                           |  API Gateway     |
+                           |  (8080)          |
+                           +------------------+
+                                     |
+                           +------------------+
+                           |  Config Server   |
+                           |  (8888)          |
+                           +------------------+
+                                     |
+                           +------------------+
+                           |  Admin Server    |
+                           |  (8090)          |
+                           +------------------+
 
