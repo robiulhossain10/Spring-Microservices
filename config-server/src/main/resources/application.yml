@@ -13,3 +13,4 @@ spring:
           uri: https://github.com/robiulhossain10/Spring-Microservices
           default-label: master   # branch নাম master হলে master দাও, না হলে main
           search-paths: config-repo  # repo এর ভেতরে যে ফোল্ডারে configs আছে
+          clone-on-start: true
