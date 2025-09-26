@@ -1,4 +1,6 @@
-# Default profile
 spring:
-  profiles:
-    active: local
+  application:
+    name: user-service
+
+  config:
+    import: "configserver:http://localhost:8888"

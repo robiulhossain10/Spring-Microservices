@@ -1,4 +1,6 @@
-## Default profile
-#spring:
-#  profiles:
-#    active: local
+spring:
+  application:
+    name: order-service
+
+  config:
+    import: "configserver:http://localhost:8888"

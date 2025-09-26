@@ -9,5 +9,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/your-username/config-repo   # এখানে তোমার config রাখবে
-          clone-on-start: true
+          # শুধু repo এর মূল URL দাও
+          uri: https://github.com/robiulhossain10/Spring-Microservices
+          default-label: master   # branch নাম master হলে master দাও, না হলে main
+          search-paths: config-repo  # repo এর ভেতরে যে ফোল্ডারে configs আছে
