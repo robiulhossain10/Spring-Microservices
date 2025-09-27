@@ -8,17 +8,21 @@ spring:
     gateway:
       server:
         webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
           routes:
             - id: user-service
-              uri: lb://USER-SERVICE
+              uri: lb://user-service
               predicates:
                 - Path=/user/**
             - id: order-service
-              uri: lb://ORDER-SERVICE
+              uri: lb://order-service
               predicates:
                 - Path=/order/**
             - id: product-service
-              uri: lb://PRODUCT-SERVICE
+              uri: lb://product-service
               predicates:
                 - Path=/api/**
 eureka:

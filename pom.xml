@@ -22,7 +22,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2023.0.4</spring-cloud.version>
+        <spring-cloud.version>2025.0.0</spring-cloud.version>
     </properties>
 
     <!-- Multi-module declaration -->
@@ -32,6 +32,8 @@
         <module>user-service</module>
         <module>order-service</module>
         <module>product-service</module>
+        <module>config-server</module>
+        <module>admin-server</module>
     </modules>
 
     <!-- Dependency Management for Spring Cloud -->
